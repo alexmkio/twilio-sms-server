@@ -8,6 +8,12 @@ router.use(session({secret: process.env.SESSION_SECRET as string}))
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(bodyParser.json())
 
+router.get("/", async (request: Request, response: Response) => {
+  return response.status(200).json({
+    message: 'API Documentation: https://github.com/alexmkio/twilio-sms-server'
+  })
+})
+
 router.post('/sms', async (request: Request, response: Response) => {
 
   const twiml = new MessagingResponse()
