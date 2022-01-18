@@ -21,6 +21,8 @@ The server is deployed on Heroku [here](https://ak-twilio-sms-server.herokuapp.c
 
 * Sending images will elicit the images being sent back along with the response "Back at cha." This response is concated with other responses per [this documentation](https://www.twilio.com/docs/messaging/twiml/message#nouns).
 
+* Calling the number presents you with an interactive IVR
+
 ## Technologies Used
 This API was built in [Node.js](https://nodejs.org/) and [TypeScript](https://www.typescriptlang.org/) using the [express](https://expressjs.com/) framework.
 
