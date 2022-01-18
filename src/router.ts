@@ -32,7 +32,7 @@ router.post('/sms', async (request: Request, response: Response) => {
   } else if (request.body.Body == 'bye') {
     message.body('Goodbye')
     message.media('https://media0.giphy.com/media/COYGe9rZvfiaQ/200.gif')
-  } else {
+  } else if (request.body.Body.length) {
     message.body('Come again?')
     message.media('https://c.tenor.com/oRhDoibDP0kAAAAM/barack-obama-former-us-president.gif')
   }
