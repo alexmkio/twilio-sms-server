@@ -1,7 +1,9 @@
 import express, { Request, Response } from 'express'
 const router = express.Router()
+import twilio from 'twilio'
 const MessagingResponse = require('twilio').twiml.MessagingResponse
 import bodyParser from 'body-parser'
+import ivrRouter from './ivr/router'
 
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(bodyParser.json())
@@ -40,5 +42,7 @@ router.post('/sms', async (request: Request, response: Response) => {
   response.writeHead(200, { 'Content-Type': 'text/xml' })
   response.end(twiml.toString())
 })
+
+router.use('/ivr', twilio.webhook({validate: false}), ivrRouter);
 
 export default router
