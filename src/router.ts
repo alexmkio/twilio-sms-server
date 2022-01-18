@@ -13,10 +13,19 @@ router.get("/", async (request: Request, response: Response) => {
 })
 
 router.post('/sms', async (request: Request, response: Response) => {
-
   const twiml = new MessagingResponse()
-  const message = twiml.message();
-  
+  const message = twiml.message()
+
+  const { body } = request
+  const { NumMedia } = body
+
+  if (NumMedia) {
+    for (var i = 0; i < NumMedia; i++) {
+      message.body('Back at cha.')
+      message.media(body[`MediaUrl${i}`])
+    }
+  }
+
   if (request.body.Body == 'hello') {
     message.body('Hi!')
     message.media('https://c.tenor.com/zQWHcFPU1-gAAAAC/forrest-gump.gif')
@@ -24,7 +33,7 @@ router.post('/sms', async (request: Request, response: Response) => {
     message.body('Goodbye')
     message.media('https://media0.giphy.com/media/COYGe9rZvfiaQ/200.gif')
   } else {
-    message.body('come again?')
+    message.body('Come again?')
     message.media('https://c.tenor.com/oRhDoibDP0kAAAAM/barack-obama-former-us-president.gif')
   }
 
