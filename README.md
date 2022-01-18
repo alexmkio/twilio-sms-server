@@ -1,11 +1,11 @@
 # Twilio SMS Server
 The purpose of this application is to develop a greater understanding of the different products the [Twilio](https://www.twilio.com/) team has built.
 
-The server is deloyed on Heroku [here](https://ak-twilio-sms-server.herokuapp.com/).
+The server is deployed on Heroku [here](https://ak-twilio-sms-server.herokuapp.com/).
 
 ## Features
 * Sending an SMS of "hello" to the Twilio number will elicit a response of "Hi!" and the following gif:
-![Forest Gump waving](https://c.tenor.com/zQWHcFPU1-gAAAAC/forrest-gump.gif)
+![Forrest Gump waving](https://c.tenor.com/zQWHcFPU1-gAAAAC/forrest-gump.gif)
 * Sending an SMS of "bye" to the Twilio number will elicit a response of "Goodbye!" and the following gif:
 ![Homer Simpson disappearing into bush](https://media0.giphy.com/media/COYGe9rZvfiaQ/200.gif)
 * Sending an SMS of anything other than "hello" or "bye" to the Twilio number will elicit a response of "come again?" and the following gif:
