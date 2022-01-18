@@ -19,6 +19,8 @@ The server is deployed on Heroku [here](https://ak-twilio-sms-server.herokuapp.c
   <img src="https://c.tenor.com/oRhDoibDP0kAAAAM/barack-obama-former-us-president.gif" alt="Obama confused" />
 </p>
 
+* Sending images will elicit the images being sent back along with the response "Back at cha." This response is concated with other responses per [this documentation](https://www.twilio.com/docs/messaging/twiml/message#nouns).
+
 ## Technologies Used
 This API was built in [Node.js](https://nodejs.org/) and [TypeScript](https://www.typescriptlang.org/) using the [express](https://expressjs.com/) framework.
 
