@@ -31,7 +31,8 @@ export const menu = (digit: number) => {
   const optionActions: Items = {
     '1': listCats,
     '2': listDogs,
-    '3': listPeopleILove
+    '3': listPeopleILove,
+    '4': hangUp
   }
 
   return (optionActions[digit])
@@ -42,16 +43,16 @@ export const menu = (digit: number) => {
 const listCats = () => {
   const twiml = new VoiceResponse()
   twiml.say('Yoda. Silo. Tigeris.')
-  twiml.say('Thanks for calling. Goodbye!')
-  twiml.hangup()
+  twiml.say('Returning to the main menu')
+  twiml.redirect('/ivr/welcome')
   return twiml.toString()
 }
 
 const listDogs = () => {
   const twiml = new VoiceResponse()
   twiml.say('Noodle bear.')
-  twiml.say('Thanks for calling. Goodbye!')
-  twiml.hangup()
+  twiml.say('Returning to the main menu')
+  twiml.redirect('/ivr/welcome')
   return twiml.toString()
 }
 
@@ -87,5 +88,12 @@ const redirectWelcome = () => {
   const twiml = new VoiceResponse()
   twiml.say('Returning to the main menu')
   twiml.redirect('/ivr/welcome')
+  return twiml.toString()
+}
+
+const hangUp = () => {
+  const twiml = new VoiceResponse()
+  twiml.say('Thanks for calling. Goodbye!')
+  twiml.hangup()
   return twiml.toString()
 }
