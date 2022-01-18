@@ -1,5 +1,13 @@
 const VoiceResponse = require('twilio').twiml.VoiceResponse
 
+type Items = {
+  [key: string]: Function,
+}
+
+type ItemsTwo = {
+  [key: string]: string,
+}
+
 export const welcome = () => {
   const voiceResponse = new VoiceResponse()
 
@@ -10,23 +18,20 @@ export const welcome = () => {
   })
 
   gather.say(
-    'Thanks for calling the E T Phone Home Service. ' +
-    'Please press 1 for directions. ' +
-    'Press 2 for a list of planets to call.',
-    {loop: 3}
+    `Thanks for calling Alex Kio's telephone service. ` +
+    'Please press 1 for a list of cat names. ' +
+    'Press 2 for a list of dog names.' +
+    'Press 3 for a list of people I love.'
   )
 
   return voiceResponse.toString()
 }
 
-type Items = {
-  [key: string]: Function,
-}
-
 export const menu = (digit: number) => {
   const optionActions: Items = {
-    '1': giveExtractionPointInstructions,
-    '2': listPlanets,
+    '1': listCats,
+    '2': listDogs,
+    '3': listPeopleILove
   }
 
   return (optionActions[digit])
@@ -34,15 +39,39 @@ export const menu = (digit: number) => {
     : redirectWelcome()
 }
 
-type ItemsTwo = {
-  [key: string]: string,
+const listCats = () => {
+  const twiml = new VoiceResponse()
+  twiml.say('Yoda. Silo. Tigeris.')
+  twiml.say('Thanks for calling. Goodbye!')
+  twiml.hangup()
+  return twiml.toString()
 }
 
-export const planets = (digit: number) => {
+const listDogs = () => {
+  const twiml = new VoiceResponse()
+  twiml.say('Noodle bear.')
+  twiml.say('Thanks for calling. Goodbye!')
+  twiml.hangup()
+  return twiml.toString()
+}
+
+const listPeopleILove = () => {
+  const twiml = new VoiceResponse()
+
+  const gather = twiml.gather({
+    action: '/ivr/numbers',
+    numDigits: '1',
+    method: 'POST',
+  })
+
+  gather.say('I love Ellen. To call Alex press 2.')
+
+  return twiml.toString()
+}
+
+export const numbers = (digit: number) => {
   const optionActions: ItemsTwo = {
-    '2': '+12024173378',
-    '3': '+12027336386',
-    '4': '+12027336637',
+    '2': '+18502641927',
   }
 
   if (optionActions[digit]) {
@@ -54,67 +83,9 @@ export const planets = (digit: number) => {
   return redirectWelcome()
 }
 
-/**
- * Returns Twiml
- * @return {String}
- */
-const giveExtractionPointInstructions = () => {
-  const twiml = new VoiceResponse()
-
-  twiml.say(
-    'To get to your extraction point, get on your bike and go down ' +
-    'the street. Then Left down an alley. Avoid the police cars. Turn left ' +
-    'into an unfinished housing development. Fly over the roadblock. Go ' +
-    'passed the moon. Soon after you will see your mother ship.',
-    {voice: 'alice', language: 'en-GB'}
-  )
-
-  twiml.say(
-    'Thank you for calling the ET Phone Home Service - the ' +
-    'adventurous alien\'s first choice in intergalactic travel'
-  )
-
-  twiml.hangup()
-
-  return twiml.toString()
-}
-
-/**
- * Returns a TwiML to interact with the client
- * @return {String}
- */
-const listPlanets = () => {
-  const twiml = new VoiceResponse()
-
-  const gather = twiml.gather({
-    action: '/ivr/planets',
-    numDigits: '1',
-    method: 'POST',
-  });
-
-  gather.say(
-    'To call the planet Broh doe As O G, press 2. To call the planet DuhGo ' +
-    'bah, press 3. To call an oober asteroid to your location, press 4. To ' +
-    'go back to the main menu, press the star key ',
-    {voice: 'alice', language: 'en-GB', loop: 3}
-  );
-
-  return twiml.toString()
-}
-
-/**
- * Returns an xml with the redirect
- * @return {String}
- */
 const redirectWelcome = () => {
   const twiml = new VoiceResponse()
-
-  twiml.say('Returning to the main menu', {
-    voice: 'alice',
-    language: 'en-GB',
-  })
-
+  twiml.say('Returning to the main menu')
   twiml.redirect('/ivr/welcome')
-
   return twiml.toString()
 }
