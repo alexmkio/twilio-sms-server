@@ -1,10 +1,8 @@
 import express, { Request, Response } from 'express'
 const router = express.Router()
-import session from 'express-session'
 const MessagingResponse = require('twilio').twiml.MessagingResponse
 import bodyParser from 'body-parser'
 
-router.use(session({secret: process.env.SESSION_SECRET as string}))
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(bodyParser.json())
 

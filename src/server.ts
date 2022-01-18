@@ -1,24 +1,24 @@
 import express from 'express'
 const app = express()
-import compression from 'compression'
-import helmet from "helmet"
-import cors from "cors"
-import rateLimit from 'express-rate-limit'
+import session from 'express-session'
 import * as dotenv from "dotenv"
 dotenv.config()
 import router from './router'
 
-app.use(compression())
-
-app.use(helmet())
-
-app.use(cors())
-
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000,
-  max: 200,
-})
-app.use(limiter)
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1)
+  app.use(session({
+    secret: process.env.SESSION_SECRET as string,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }))
+} else {
+  app.use(session({
+    secret: process.env.SESSION_SECRET as string,
+    cookie: {}
+  }))
+}
 
 const PORT: number = parseInt(process.env.PORT as string) || 1337
 
