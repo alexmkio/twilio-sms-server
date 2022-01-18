@@ -5,11 +5,19 @@ The server is deployed on Heroku [here](https://ak-twilio-sms-server.herokuapp.c
 
 ## Features
 * Sending an SMS of "hello" to the Twilio number will elicit a response of "Hi!" and the following gif:
-![Forrest Gump waving](https://c.tenor.com/zQWHcFPU1-gAAAAC/forrest-gump.gif)
+<p align="center">
+  <img src="https://c.tenor.com/zQWHcFPU1-gAAAAC/forrest-gump.gif" alt="Forrest Gump waving" />
+</p>
+
 * Sending an SMS of "bye" to the Twilio number will elicit a response of "Goodbye!" and the following gif:
-![Homer Simpson disappearing into bush](https://media0.giphy.com/media/COYGe9rZvfiaQ/200.gif)
+<p align="center">
+  <img src="https://media0.giphy.com/media/COYGe9rZvfiaQ/200.gif" alt="Homer Simpson disappearing into bush" />
+</p>
+
 * Sending an SMS of anything other than "hello" or "bye" to the Twilio number will elicit a response of "come again?" and the following gif:
-![Obama confused](https://c.tenor.com/oRhDoibDP0kAAAAM/barack-obama-former-us-president.gif)
+<p align="center">
+  <img src="https://c.tenor.com/oRhDoibDP0kAAAAM/barack-obama-former-us-president.gif" alt="Obama confused" />
+</p>
 
 ## Technologies Used
 This API was built in [Node.js](https://nodejs.org/) and [TypeScript](https://www.typescriptlang.org/) using the [express](https://expressjs.com/) framework.
